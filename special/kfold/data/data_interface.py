@@ -79,7 +79,7 @@ class DInterface(pl.LightningDataModule):
             from self.hparams dictionary. You can also input any args
             to overwrite the corresponding value in self.kwargs.
         """
-        class_args = inspect.getargspec(self.data_module.__init__).args[1:]
+        class_args = list(inspect.signature(self.data_module.__init__).parameters.keys())[1:]
         inkeys = self.kwargs.keys()
         args1 = {}
         for arg in class_args:
